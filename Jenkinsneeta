@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'maven'
+    }
+    
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'main', credentialsId: 'your_credentials_id', url: 'https://github.com/jaiswaladi246/Boardgame.git'
+            }
+        }
+        
+      stage('maven compile ') {
+          steps {
+              sh "mvn compile"
+          }
+      }
+      
+        stage('Build') {
+            steps {
+                sh "mvn package"
+            }
+        }
+    }
+    
+    
+}
