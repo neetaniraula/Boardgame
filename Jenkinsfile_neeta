@@ -2,17 +2,22 @@ pipeline {
     agent any
     
     tools {
-        maven 'maven'
+        jdk 'jdk17'
+        maven 'maven3'
+    }
+    
+    parameters {
+        string (name: 'Git_Branch', defaultValue: 'main', description: 'git branch name')
     }
     
     stages {
-        stage('Clone') {
+        stage('Git checkout') {
             steps {
-                git branch: 'main', credentialsId: 'your_credentials_id', url: 'https://github.com/neetaniraula/Boardgame.git'
+                git branch: "${params.Git_Branch}", credentialsId: 'your_credentials_id', url: 'https://github.com/neetaniraula/Boardgame.git'
             }
         }
         
-      stage('maven compile ') {
+      stage('maven compile') {
           steps {
               sh "mvn compile"
           }
