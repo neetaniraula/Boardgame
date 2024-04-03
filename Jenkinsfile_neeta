@@ -17,7 +17,7 @@ pipeline {
               sh "mvn compile"
           }
       }
-      
+      fail this step
         stage('Build') {
             steps {
                 sh "mvn package"
