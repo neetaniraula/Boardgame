@@ -1,3 +1,4 @@
+//boardgamepipeline
 pipeline {
     agent any
     
